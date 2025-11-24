@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="id"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - WormGpt</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="logo-text">W</div>
+      <h1>WormGpt</h1>
+      <p class="subtitle">Masuk untuk melanjutkan</p>
+
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required="">
+        <input type="password" id="password" placeholder="Password" required="">
+        <button type="submit">Masuk</button>
+      </form>
+
+      <p id="errorMsg" class="error"></p>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+<script>
+  document.getElementById("loginForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (authenticate(username, password)) {
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("errorMsg").textContent = "Username atau password salah.";
+    }
+  });
+
+  console.log("Login page loaded");
+  console.log("authenticate function exists?", typeof authenticate);
+</script>
+
+
+</body></html>

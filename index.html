@@ -1,0 +1,91 @@
+<!-- Mau Ngapain Kacung😹 --><!DOCTYPE html><html lang="id"><head>
+  <script src="js/auth.js"></script>
+  <script>
+    if (!isAuthenticated()) {
+      window.location.href = "login.html";
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WormGpt | By RianModss</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-title">
+                <div class="logo-icon">W</div>
+                <h1 id="app-header"></h1>
+            </div>
+            <div class="header-controls">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>Online</span>
+                </div>
+                <!-- MENU BARU : titik-tiga -->
+                <div class="dropdown">
+                    <button id="menu-btn" class="control-btn" title="Menu">⋮</button>
+                    <div id="dropdown-menu" class="dropdown-menu">
+                        <button id="refresh-api-btn" class="dropdown-item">🔄 Refresh API</button>
+                        <button id="new-chat-btn" class="dropdown-item">➕ Chat Baru</button>
+                        <button id="history-btn" class="dropdown-item">📋 Riwayat Chat</button>
+                    </div>
+                </div>
+                <!-- END MENU BARU -->
+                <a href="https://t.me/RianModss" target="_blank" class="contact-dev">💬 Contact Dev</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- History Panel tetap sama -->
+    <div id="history-panel" class="history-panel">
+        <div class="history-header">
+            <h3>Riwayat Chat</h3>
+            <button id="close-history" class="close-btn">✕</button>
+        </div>
+        <div id="history-list" class="history-list"></div>
+    </div>
+
+    <div id="chat-window">
+  
+            </div>
+        
+    
+
+    <div id="input-area">
+        <div class="file-preview" id="file-preview">
+            <div class="file-preview-info">
+                <span class="file-icon">📄</span>
+                <div class="file-info">
+                    <span class="file-name" id="preview-file-name"></span>
+                    <span class="file-size" id="preview-file-size"></span>
+                </div>
+            </div>
+            <button class="remove-file" id="remove-file" title="Hapus file">✕</button>
+        </div>
+        <div class="input-wrapper">
+            <div class="input-controls">
+                <input type="file" id="file-input" accept=".txt,.js,.py,.html,.css,.json,.md,.java,.cpp,.c,.php,.rb,.go,.rs,.ts,.jsx,.tsx,.vue,.xml,.yaml,.yml,.sh,.bat">
+                <button id="file-button" title="Upload file kode">📎</button>
+            </div>
+            <textarea id="chat-input" placeholder="Ketik pesan atau upload file kode..." rows="1"></textarea>
+            <button id="send-button">
+                <span class="button-text">Kirim</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="js/apikey.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/keamanan.js"></script>
+<script>
+  if (!isAuthenticated()) {
+    window.location.href = "login.html";
+  }
+</script>
+
+
+</body></html>
