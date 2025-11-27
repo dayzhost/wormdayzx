@@ -1,32 +1,38 @@
+// ===============================
+// CONFIG LOGIN
+// ===============================
+const VALID_USERNAME = "admin";
+const VALID_PASSWORD = "12345";
+const VALID_EXPIRED = "2030-01-01"; // bebas
 
-// Ganti username & password di sini
-const AUTH_DATA = {
-  username: "RIANGANTENG",
-  password: "JAWA"
-};
+// ===============================
+// LOGIN LOGIC
+// ===============================
+function handleLogin(event) {
+    event.preventDefault();
 
-function isAuthenticated() {
-  return localStorage.getItem("authenticated") === "true";
+    const username = document.querySelector("input[name='username']").value.trim();
+    const password = document.querySelector("input[name='key']").value.trim();
+    const now = Date.now();
+    const expired = new Date(VALID_EXPIRED).getTime();
+
+    if (username !== VALID_USERNAME) return showToast("Username salah!");
+    if (password !== VALID_PASSWORD) return showToast("Password salah!");
+    if (now > expired) return showToast("Akses sudah expired!");
+
+    // Login sukses → redirect
+    window.location.href = "index.html";
 }
 
-function authenticate(username, password) {
-  if (
-    username === AUTH_DATA.username &&
-    password === AUTH_DATA.password
-  ) {
-    localStorage.setItem("authenticated", "true");
-    return true;
-  }
-  return false;
-}
+// ===============================
+// TOAST
+// ===============================
+function showToast(msg) {
+    const toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.style.display = "block";
 
-function logout() {
-  localStorage.removeItem("authenticated");
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, 3000);
 }
-
-function protectPage() {
-  if (!isAuthenticated() && !window.location.pathname.includes("login.html")) {
-    window.location.href = "login.html";
-  }
-}
-protectPage();
