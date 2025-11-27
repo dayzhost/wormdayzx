@@ -1,43 +1,226 @@
-<!DOCTYPE html><html lang="id"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - WormGpt</title>
-  <link rel="stylesheet" href="login.css">
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebApi-Login</title>
+
+  <!-- Icon -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #000;
+      --text: #e6e6e6;
+      --muted: #9a9a9a;
+      --accent: #ff7f00;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .logo {
+      width: 180px;
+      height: 180px;
+      margin-bottom: 20px;
+      border-radius: 18px;
+      border: 2px solid var(--text);
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 16px;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .form-group i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 16px 16px 16px 46px;
+      border-radius: 12px;
+      border: 1px solid var(--accent);
+      background: #111;
+      color: var(--text);
+      font-size: 17px;
+    }
+
+    input::placeholder {
+      color: #777;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .btn-masuk {
+      width: 100%;
+      max-width: 420px;
+      padding: 16px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff7f00, #ff4500);
+      color: #000;
+      margin-top: 10px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(255, 127, 0, 0.3);
+    }
+
+    .btn-masuk i {
+      margin-right: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-masuk::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: skewX(-25deg);
+      transition: 0.5s;
+    }
+
+    .btn-masuk:hover::before {
+      left: 120%;
+    }
+
+    .btn-masuk:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(255, 127, 0, 0.5);
+    }
+
+    .btn-masuk:hover i {
+      transform: translateX(4px);
+    }
+
+    .buy-access {
+      margin-top: 14px;
+      font-size: 15px;
+      color: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .buy-access:hover {
+      color: #ff4500;
+      transform: scale(1.05);
+    }
+
+    #toast {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #000;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      z-index: 1000;
+      animation: fadeInOut 4s ease;
+    }
+
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+        bottom: 10px;
+      }
+
+      10%,
+      90% {
+        opacity: 1;
+        bottom: 30px;
+      }
+
+      100% {
+        opacity: 0;
+        bottom: 10px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <div class="login-container">
-    <div class="login-card">
-      <div class="logo-text">W</div>
-      <h1>WormGpt</h1>
-      <p class="subtitle">Masuk untuk melanjutkan</p>
 
-      <form id="loginForm">
-        <input type="text" id="username" placeholder="Username" required="">
-        <input type="password" id="password" placeholder="Password" required="">
-        <button type="submit">Masuk</button>
-      </form>
+  <img class="logo" src="https://files.catbox.moe/rq7un2.jpg" alt="ToxicAvenger logo">
 
-      <p id="errorMsg" class="error"></p>
+  <h1 class="title">WormGpt</h1>
+  <div class="subtitle">Acces - Generate</div>
+
+  <form onsubmit="handleLogin(event)" style="text-align: center;">
+    <div class="form-group">
+      <i class="fas fa-user"></i>
+      <input type="text" name="username" placeholder="Username" required />
     </div>
-  </div>
+
+    <div class="form-group">
+      <i class="fas fa-key"></i>
+      <input type="text" name="key" placeholder="Password" required />
+    </div>
+
+    <button type="submit" class="btn-masuk">
+      <i class="fas fa-arrow-right"></i> 𝗠𝗮𝘀𝘂𝗸
+    </button>
+
+    <a href="https://t.me/DayzxTech" target="_blank" class="buy-access">Buy Access</a>
+  </form>
+
+  <div id="toast"></div>
 
   <script src="auth.js"></script>
-<script>
-  document.getElementById("loginForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
 
-    if (authenticate(username, password)) {
-      window.location.href = "index.html";
-    } else {
-      document.getElementById("errorMsg").textContent = "Username atau password salah.";
-    }
-  });
+</body>
 
-  console.log("Login page loaded");
-  console.log("authenticate function exists?", typeof authenticate);
-</script>
-
-
-</body></html>
+</html>
