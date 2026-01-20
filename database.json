@@ -1,0 +1,45 @@
+{
+  "builds": [
+    {
+      "id": "build_1234567890_abc123",
+      "projectName": "example_app",
+      "projectPath": "/uploads/example_app.zip",
+      "config": {
+        "mode": "release",
+        "splitPerAbi": false,
+        "icon": null,
+        "iconShape": "rounded",
+        "iconBackground": "#2196F3"
+      },
+      "status": "completed",
+      "codemagicBuildId": "cm_1234567890",
+      "apkFileName": "app-release.apk",
+      "apkSize": "18.5 MB",
+      "downloadUrl": "/download/build_1234567890_abc123/app-release.apk",
+      "createdAt": "2024-01-20T10:30:00.000Z",
+      "startedAt": "2024-01-20T10:30:05.000Z",
+      "completedAt": "2024-01-20T10:35:30.000Z",
+      "error": null
+    }
+  ],
+  "users": [],
+  "settings": {
+    "maxConcurrentBuilds": 3,
+    "maxQueueSize": 10,
+    "maxFileSize": 104857600,
+    "autoCleanupDays": 7,
+    "allowedMimeTypes": ["application/zip"],
+    "codemagic": {
+      "enabled": true,
+      "defaultWorkflow": "android",
+      "timeout": 3600
+    }
+  },
+  "stats": {
+    "totalBuilds": 0,
+    "successfulBuilds": 0,
+    "failedBuilds": 0,
+    "totalApkSize": "0 MB",
+    "averageBuildTime": "0s"
+  }
+}
